@@ -18,22 +18,51 @@
 
       
       <main>
-        <div class="intro">
-          <p>The goal of Exosphere is to simplify the creation of Amazon Web Service CloudFormation templates and create useful compile-time feedback to the user. Exosphere is capable of turning .exo files into CloudFormation templates, .exo files are parsed and checked to ensure any generated CloudFormation is valid.</p>
-          <p>For example Exosphere is able to take the following input:</p>
-          <pre class="code_block">ExploreGithubArtifacts S3</pre>
-          <p>Converting it into the following valid CloudFormation template:</p>
-          <pre class="code_block">
+        <p>The goal of Exosphere is to simplify the creation of Amazon Web Service CloudFormation templates and create useful compile-time feedback to the user. Exosphere is capable of turning .exo files into CloudFormation templates, .exo files are parsed and checked to ensure any generated CloudFormation is valid.</p>
+        <p>For example Exosphere is able to take the following input:</p>
+        <pre class="code_block">ExploreGithubArtifacts S3</pre>
+        <p>Converting it into the following valid CloudFormation template:</p>
+        <pre class="code_block">
 {
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Resources": {
-        "ExploreGithubArtifacts": {
-            "Type": "AWS::S3::Bucket",
-        }
-    }
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+      "ExploreGithubArtifacts": {
+          "Type": "AWS::S3::Bucket",
+      }
+  }
 }
-          </pre>
-        </div>
+        </pre>
+        
+        
+        <h3 class="subsubheading">Documentation</h3>
+        
+        <p>The format for an exosphere (.exo) file is:</p>
+        <pre class="code_block">
+resource_name resource_type { propKey1 propValue1, propKey2 propValue2, ... }
+        </pre>
+        <p>The properties are optional. If you omit them, then the brackets are not needed. If you include properties, then the brackets are required. However, the brackets and properties can span multiple lines. Please see the table below for more details.</p>
+        <p>An example of this would be:</p>
+        <pre class="code_block">
+MyS3Bucket S3
+        </pre>
+        <p>which would produce the cloudformation seen above.
+
+          
+        
+        <h3 class="subsubheading">Currently Supported CloudFormation Types</h3>
+        <pre class="code_block">
+CloudFormation	Exosphere
+AWS::S3::Bucket	S3
+AWS::ECS::Cluster	ECSCluster
+AWS::ApiGateway::Account	ApiGatewayAccount
+AWS::ApiGateway::ApiKey	ApiGatewayApiKey
+AWS::ApiGateway::ClientCertificate	ApiGatewayClientCertificate
+AWS::ApiGateway::RestApi	ApiGatewayRestApi
+AWS::ApiGateway::UsagePlan	ApiGatewayUsagePlan
+AWS::AppStream::Stack	AppStreamStack
+AWS::AppSync::ApiKey	AppSyncApiKey
+      </pre>
+          
       </main>
       <footer>
         <p>&copy; <a href="https://www.jacobclark.xyz">Jacob Clark</a> & <a href="https://www.chris-bacon.co.uk">Chris Bacon</a> 2019</p>
@@ -68,6 +97,11 @@
   
   .subheading {
     font-size: 2em;
+    font-weight: 300;
+  }
+  
+  .subsubheading {
+    font-size: 1.5em;
     font-weight: 300;
   }
   
